@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Page de support officielle de PointIt - Jeu de géographie éducatif. FAQ, assistance technique, contact et informations sur le Premium.">
+    <meta name="keywords" content="PointIt, support, aide, FAQ, géographie, jeu, assistance">
+    <meta name="author" content="PointIt">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0F141C">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="PointIt - Jeu de Géographie Éducatif">
+    <meta property="og:description" content="Centre d'aide officiel pour l'application PointIt. Trouvez des réponses à vos questions et contactez notre support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://valthna.github.io/PointIt-Support/">
+    <meta property="og:image" content="https://valthna.github.io/PointIt-Support/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%230F141C'/><circle cx='50' cy='50' r='45' stroke='url(%23g)' stroke-width='0.5' fill='none'/><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%2336C7EB'/><stop offset='1' stop-color='%2394'73EB'/></linearGradient></defs><circle cx='50' cy='35' r='6' fill='%236BDBFA'/></svg>">
+    
+    <title>PointIt - Jeu de Géographie Éducatif</title>
+    
+    <style>
+        /* ==================== VARIABLES CSS ==================== */
+        :root {
+            /* Colors from DesignSystem.swift */
+            --obsidian: rgb(15, 20, 28);
+            --charcoal: rgb(31, 36, 46);
+            --slate: rgb(41, 46, 59);
+            --aurora: rgb(54, 199, 235);
+            --aurora-bright: rgb(107, 219, 250);
+            --plasma: rgb(97, 166, 255);
+            --nebula: rgb(148, 115, 235);
+            --stellar: rgb(250, 171, 71);
+            --danger: rgb(247, 94, 94);
+            
+            /* Spacing from DesignSystem.swift */
+            --spacing-xs: 4px;
+            --spacing-s: 8px;
+            --spacing-m: 12px;
+            --spacing-l: 20px;
+            --spacing-xl: 28px;
+            --spacing-xxl: 40px;
+            
+            /* Glass Effect */
+            --glass-bg: rgba(31, 36, 46, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: rgba(0, 0, 0, 0.3);
+            
+            /* Animations */
+            --spring-duration: 0.28s;
+            --spring-timing: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* ==================== RESET & BASE ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(180deg, 
+                var(--obsidian) 0%, 
+                var(--charcoal) 50%, 
+                var(--slate) 100%
+            );
+            min-height: 100vh;
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* ==================== ANIMATED BACKGROUND ==================== */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(54, 199, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(148, 115, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(97, 166, 255, 0.1) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+        
+        /* ==================== CONTAINER ==================== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: var(--spacing-xl);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ==================== LANGUAGE SELECTOR ==================== */
+        .lang-selector {
+            position: fixed;
+            top: var(--spacing-l);
+            right: var(--spacing-l);
+            z-index: 1001;
+            display: flex;
+            gap: var(--spacing-xs);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: var(--spacing-s);
+            border-radius: 100px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            transition: transform var(--spring-duration) var(--spring-timing);
+        }
+        
+        .lang-selector:hover {
+            transform: translateY(-2px);
+        }
+        
+        .lang-btn {
+            padding: var(--spacing-s) var(--spacing-m);
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            cursor: pointer;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all var(--spring-duration) var(--spring-timing);
+            font-family: inherit;
+            position: relative;
+        }
+        
+        .lang-btn:hover {
+            color: var(--aurora-bright);
+            background: rgba(54, 199, 235, 0.1);
+            transform: scale(1.05);
+        }
+        
+        .lang-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .lang-btn.active {
+            color: white;
+            background: linear-gradient(135deg, var(--aurora-bright), var(--plasma));
+            box-shadow: 0 4px 12px rgba(54, 199, 235, 0.3);
+        }
+        
+        .lang-btn.active::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 100px;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--aurora-bright), var(--plasma));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.3;
+        }
+        
+        /* ==================== NAVIGATION STICKY ==================== */
+        .nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 100px;
+            padding: var(--spacing-m) var(--spacing-l);
+            display: flex;
+            gap: var(--spacing-s);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-xl);
+            border: 1px solid var(--glass-border);
+            position: sticky;
+            top: var(--spacing-l);
+            z-index: 1000;
+            box-shadow: 0 8px 32px var(--glass-shadow);
+            transition: transform var(--spring-duration) var(--spring-timing);
+        }
+        
+        .nav.scrolled {
+            transform: scale(0.96);
+        }
+        
+        .nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: var(--spacing-s) var(--spacing-m);
+            border-radius: 20px;
+            transition: all var(--spring-duration) var(--spring-timing);
+            position: relative;
+        }
+        
+        .nav a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: rgba(54, 199, 235, 0.1);
+            opacity: 0;
+            transition: opacity var(--spring-duration) var(--spring-timing);
+        }
+        
+        .nav a:hover::before,
+        .nav a:focus::before {
+            opacity: 1;
+        }
+        
+        .nav a:hover,
+        .nav a:focus {
+            color: var(--aurora-bright);
+            outline: none;
+            transform: translateY(-1px);
+        }
+        
+        .nav a:active {
+            transform: translateY(0);
+        }
+        
+        /* ==================== GLASS CARD ==================== */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid var(--glass-border);
+            padding: var(--spacing-xxl);
+            box-shadow: 
+                0 20px 60px var(--glass-shadow),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s var(--spring-timing);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(107, 219, 250, 0.3), 
+                transparent
+            );
+        }
+        
+        /* ==================== HEADER WITH LOGO ==================== */
+        .header {
+            text-align: center;
+            margin-bottom: var(--spacing-xxl);
+            animation: fadeInUp 0.8s var(--spring-timing);
+        }
+        
+        .logo-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto var(--spacing-xl);
+            position: relative;
+            animation: logoEntrance 1s var(--spring-timing);
+        }
+        
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            60% {
+                transform: scale(1.1) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 40px rgba(54, 199, 235, 0.4));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes logoPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 20px 40px rgba(54, 199, 235, 0.4));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 25px 50px rgba(54, 199, 235, 0.6));
+            }
+        }
+        
+        /* Rotate gradient in logo */
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .logo-svg .rotating-gradient {
+            transform-origin: center;
+            animation: rotateGradient 20s linear infinite;
+        }
+        
+        h1 {
+            font-size: 52px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--aurora-bright), var(--plasma));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-m);
+            letter-spacing: -0.03em;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', sans-serif;
+            animation: titleShine 3s ease-in-out infinite;
+        }
+        
+        @keyframes titleShine {
+            0%, 100% {
+                filter: brightness(1);
+            }
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+        
+        .subtitle {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            margin-bottom: var(--spacing-l);
+        }
+        
+        /* ==================== TYPOGRAPHY ==================== */
+        h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-top: var(--spacing-xxl);
+            margin-bottom: var(--spacing-l);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-m);
+            scroll-margin-top: 120px;
+        }
+        
+        h2::before {
+            content: '';
+            width: 4px;
+            height: 28px;
+            background: linear-gradient(180deg, var(--aurora), var(--plasma));
+            border-radius: 2px;
+            animation: barGrow 0.5s var(--spring-timing);
+        }
+        
+        @keyframes barGrow {
+            from { height: 0; opacity: 0; }
+            to { height: 28px; opacity: 1; }
+        }
+        
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--aurora-bright);
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-m);
+        }
+        
+        p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: var(--spacing-l);
+            line-height: 1.7;
+        }
+        
+        /* ==================== FAQ ITEMS ==================== */
+        .faq-item {
+            background: rgba(41, 46, 59, 0.3);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-l);
+            border-radius: 24px;
+            margin-bottom: var(--spacing-l);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all var(--spring-duration) var(--spring-timing);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .faq-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: linear-gradient(180deg, var(--aurora-bright), var(--plasma));
+            transition: height var(--spring-duration) var(--spring-timing);
+        }
+        
+        .faq-item:hover::before {
+            height: 100%;
+        }
+        
+        .faq-item:hover {
+            background: rgba(41, 46, 59, 0.5);
+            border-color: rgba(54, 199, 235, 0.3);
+            transform: translateX(4px);
+            box-shadow: 
+                -4px 0 0 var(--aurora),
+                0 8px 24px rgba(54, 199, 235, 0.2);
+        }
+        
+        .faq-item:active {
+            transform: translateX(2px);
+        }
+        
+        .faq-question {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--aurora-bright);
+            margin-bottom: var(--spacing-m);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-s);
+        }
+        
+        .faq-question::before {
+            content: '→';
+            font-size: 24px;
+            color: var(--plasma);
+            transition: transform var(--spring-duration) var(--spring-timing);
+        }
+        
+        .faq-item:hover .faq-question::before {
+            transform: translateX(4px);
+        }
+        
+        .faq-answer {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+        }
+        
+        .faq-answer strong {
+            color: var(--aurora-bright);
+            font-weight: 600;
+        }
+        
+        .faq-answer a {
+            color: var(--aurora-bright);
+            text-decoration: none;
+            border-bottom: 1px solid var(--aurora);
+            transition: all 0.2s ease;
+        }
+        
+        .faq-answer a:hover {
+            color: var(--plasma);
+            border-bottom-color: var(--plasma);
+        }
+        
+        /* ==================== FEATURE GRID ==================== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-l);
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .feature-card {
+            background: rgba(41, 46, 59, 0.3);
+            backdrop-filter: blur(10px);
+            padding: var(--spacing-xl);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            transition: all var(--spring-duration) var(--spring-timing);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, 
+                rgba(54, 199, 235, 0.1), 
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity var(--spring-duration) var(--spring-timing);
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(54, 199, 235, 0.3);
+            box-shadow: 0 12px 32px rgba(54, 199, 235, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: var(--spacing-m);
+            display: inline-block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .feature-card:nth-child(2) .feature-icon {
+            animation-delay: 0.5s;
+        }
+        
+        .feature-card:nth-child(3) .feature-icon {
+            animation-delay: 1s;
+        }
+        
+        .feature-card:nth-child(4) .feature-icon {
+            animation-delay: 1.5s;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: var(--spacing-s);
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+        
+        /* ==================== BUTTONS (App Style) ==================== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-s);
+            padding: 20px 36px;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all var(--spring-duration) var(--spring-timing);
+            border: none;
+            cursor: pointer;
+            margin: var(--spacing-s);
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--aurora-bright), var(--nebula));
+            color: white;
+            box-shadow: 0 16px 40px rgba(54, 199, 235, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(54, 199, 235, 0.5);
+        }
+        
+        .btn-primary:active {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 30px rgba(54, 199, 235, 0.4);
+        }
+        
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--aurora-bright);
+            border: 1px solid rgba(54, 199, 235, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(41, 46, 59, 0.6);
+            border-color: var(--aurora);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary:active {
+            transform: translateY(0);
+        }
+        
+        /* ==================== CONTACT SECTION ==================== */
+        .contact-section {
+            background: linear-gradient(135deg, 
+                rgba(54, 199, 235, 0.15), 
+                rgba(148, 115, 235, 0.15)
+            );
+            backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: var(--spacing-xxl);
+            border: 1px solid rgba(54, 199, 235, 0.2);
+            text-align: center;
+            margin-top: var(--spacing-xxl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, 
+                rgba(54, 199, 235, 0.1) 0%, 
+                transparent 50%
+            );
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .contact-section h2 {
+            justify-content: center;
+            margin-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-section h2::before {
+            display: none;
+        }
+        
+        .contact-section > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* ==================== VERSION BADGE ==================== */
+        .version-badge {
+            display: inline-block;
+            padding: var(--spacing-s) var(--spacing-l);
+            background: rgba(54, 199, 235, 0.1);
+            border: 1px solid rgba(54, 199, 235, 0.3);
+            border-radius: 100px;
+            color: var(--aurora-bright);
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-l);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(54, 199, 235, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(54, 199, 235, 0);
+            }
+        }
+        
+        /* ==================== FOOTER ==================== */
+        .footer {
+            text-align: center;
+            margin-top: var(--spacing-xxl);
+            padding-top: var(--spacing-xl);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 13px;
+        }
+        
+        .footer-links {
+            margin-top: var(--spacing-m);
+            display: flex;
+            gap: var(--spacing-l);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--aurora-bright);
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--aurora-bright);
+        }
+        
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+        }
+        
+        /* ==================== BACK TO TOP ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: var(--spacing-xl);
+            right: var(--spacing-xl);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--aurora-bright), var(--nebula));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(54, 199, 235, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: all var(--spring-duration) var(--spring-timing);
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-6px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(54, 199, 235, 0.5);
+        }
+        
+        .back-to-top:active {
+            transform: translateY(-3px) scale(1.02);
+        }
+        
+        .back-to-top::before {
+            content: '↑';
+        }
+        
+        /* ==================== LISTS ==================== */
+        ul, ol {
+            margin-left: var(--spacing-xl);
+            margin-bottom: var(--spacing-l);
+            color: rgba(255, 255, 255, 0.75);
+        }
+        
+        li {
+            margin-bottom: var(--spacing-s);
+            padding-left: var(--spacing-s);
+        }
+        
+        ul li::marker {
+            color: var(--aurora);
+        }
+        
+        ol li::marker {
+            color: var(--aurora);
+            font-weight: 600;
+        }
+        
+        /* ==================== CODE ==================== */
+        code {
+            background: rgba(41, 46, 59, 0.6);
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--aurora-bright);
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            border: 1px solid rgba(54, 199, 235, 0.2);
+        }
+        
+        /* ==================== ACCESSIBILITY ==================== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        :focus-visible {
+            outline: 3px solid var(--aurora);
+            outline-offset: 3px;
+            border-radius: 8px;
+        }
+        
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            .container {
+                padding: var(--spacing-l);
+            }
+            
+            .glass-card {
+                padding: var(--spacing-xl) var(--spacing-l);
+                border-radius: 24px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-m);
+            }
+            
+            .nav {
+                padding: var(--spacing-s) var(--spacing-m);
+                gap: var(--spacing-xs);
+            }
+            
+            .nav a {
+                font-size: 13px;
+                padding: var(--spacing-xs) var(--spacing-s);
+            }
+            
+            .lang-selector {
+                top: var(--spacing-m);
+                right: var(--spacing-m);
+                scale: 0.9;
+            }
+            
+            .logo-container {
+                width: 110px;
+                height: 110px;
+            }
+            
+            .btn {
+                padding: 16px 28px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 32px;
+            }
+            
+            .nav {
+                border-radius: 20px;
+            }
+            
+            .nav a {
+                font-size: 12px;
+            }
+        }
+        
+        /* ==================== PRINT STYLES ==================== */
+        @media print {
+            body::before,
+            .nav,
+            .back-to-top,
+            .lang-selector {
+                display: none !important;
+            }
+            
+            .glass-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+            
+            body {
+                background: white;
+                color: black;
+            }
+        }
+        
+        /* ==================== LOADING ANIMATION ==================== */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        body {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        /* ==================== SMOOTH TRANSITIONS ==================== */
+        * {
+            transition-timing-function: var(--spring-timing);
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to content (accessibility) -->
+    <a href="#main-content" class="sr-only" data-i18n="skip_to_content">Passer au contenu principal</a>
+    
+    <!-- Language Selector -->
+    <div class="lang-selector" role="group" aria-label="Sélecteur de langue">
+        <button class="lang-btn active" data-lang="fr" onclick="changeLang('fr')" aria-label="Français">🇫🇷 FR</button>
+        <button class="lang-btn" data-lang="en" onclick="changeLang('en')" aria-label="English">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="es" onclick="changeLang('es')" aria-label="Español">🇪🇸 ES</button>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="nav" role="navigation" aria-label="Navigation principale">
+        <a href="#about" data-i18n="nav_about">À propos</a>
+        <a href="#features" data-i18n="nav_features">Fonctionnalités</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#premium" data-i18n="nav_premium">Premium</a>
+        <a href="#privacy" data-i18n="nav_privacy">Confidentialité</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <!-- Main Card -->
+        <main id="main-content" class="glass-card">
+            <!-- Header -->
+            <header class="header">
+                <div class="logo-container">
+                    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo PointIt">
+                        <!-- Gradient Definitions -->
+                        <defs>
+                            <!-- Radial gradient for background -->
+                            <radialGradient id="bgGradient" cx="50%" cy="50%">
+                                <stop offset="0%" style="stop-color:rgb(15,20,28);stop-opacity:0.95" />
+                                <stop offset="100%" style="stop-color:rgb(31,36,46);stop-opacity:1" />
+                            </radialGradient>
+                            
+                            <!-- Pin gradient (Stellar → Nebula) -->
+                            <linearGradient id="pinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:rgb(250,171,71);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgb(148,115,235);stop-opacity:1" />
+                            </linearGradient>
+                            
+                            <!-- GPS point gradient -->
+                            <linearGradient id="gpsGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:rgb(107,219,250);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:rgb(54,199,235);stop-opacity:1" />
+                            </linearGradient>
+                            
+                            <!-- Glow filter -->
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            
+                            <!-- Aurora glow for GPS -->
+                            <filter id="auroraGlow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feComponentTransfer in="coloredBlur" result="brightBlur">
+                                    <feFuncA type="linear" slope="1.5"/>
+                                </feComponentTransfer>
+                                <feMerge>
+                                    <feMergeNode in="brightBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Background circle with gradient -->
+                        <circle cx="50" cy="50" r="45" fill="url(#bgGradient)" />
+                        
+                        <!-- Border stroke -->
+                        <circle cx="50" cy="50" r="45" fill="none" 
+                                stroke="url(#pinGradient)" 
+                                stroke-width="0.5" 
+                                opacity="0.6" />
+                        
+                        <!-- Location Pin Shape -->
+                        <g transform="translate(50, 35)">
+                            <path d="M 0,-20 
+                                     C -11,-20 -20,-11 -20,0 
+                                     C -20,8 -11,16 0,30 
+                                     C 11,16 20,8 20,0 
+                                     C 20,-11 11,-20 0,-20 Z" 
+                                  fill="url(#pinGradient)"
+                                  filter="url(#glow)" />
+                            
+                            <!-- Inner circle of pin -->
+                            <circle cx="0" cy="0" r="10" fill="rgb(15,20,28)" opacity="0.8" />
+                        </g>
+                        
+                        <!-- Target rings (Aurora) -->
+                        <circle cx="50" cy="35" r="13" fill="none" 
+                                stroke="rgb(54,199,235)" 
+                                stroke-width="0.8" 
+                                opacity="0.4" />
+                        <circle cx="50" cy="35" r="9" fill="none" 
+                                stroke="rgb(107,219,250)" 
+                                stroke-width="1" 
+                                opacity="0.6" />
+                        
+                        <!-- GPS point (center) with enhanced glow -->
+                        <g filter="url(#auroraGlow)">
+                            <circle cx="50" cy="35" r="7" fill="url(#gpsGradient)" opacity="0.6" />
+                            <circle cx="50" cy="35" r="5" fill="url(#gpsGradient)" />
+                            <circle cx="50" cy="35" r="2.5" fill="white" opacity="0.9" />
+                            <circle cx="48.5" cy="33.5" r="1" fill="white" opacity="1" />
+                        </g>
+                        
+                        <!-- North arrow (Modern Arrow shape) -->
+                        <g transform="translate(50, 10)">
+                            <path d="M 0,-6 L 3.5,3 L 0,1 L -3.5,3 Z" 
+                                  fill="white" 
+                                  filter="url(#glow)" />
+                        </g>
+                    </svg>
+                </div>
+                <h1 data-i18n="title">PointIt</h1>
+                <p class="subtitle" data-i18n="subtitle">Centre d'Aide et Assistance</p>
+                <span class="version-badge" data-i18n="version_badge">Version 1.0</span>
+            </header>
+            
+            <!-- About Section -->
+            <section id="about">
+                <h2><span data-i18n="about_title">📱 À propos de PointIt</span></h2>
+                <p data-i18n="about_desc">
+                    PointIt est un jeu de géographie éducatif qui teste votre connaissance 
+                    des directions et des villes du monde. Utilisez votre boussole pour pointer 
+                    dans la direction des villes et gagnez des points selon votre précision !
+                </p>
+            </section>
+            
+            <!-- Features Grid -->
+            <section id="features">
+                <h2><span data-i18n="features_title">✨ Fonctionnalités</span></h2>
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Icône mode solo">🎮</div>
+                        <h3 class="feature-title" data-i18n="feature1_title">Mode Solo</h3>
+                        <p class="feature-desc" data-i18n="feature1_desc">Jouez à votre rythme et améliorez vos scores</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Icône multijoueur">👥</div>
+                        <h3 class="feature-title" data-i18n="feature2_title">Multijoueur</h3>
+                        <p class="feature-desc" data-i18n="feature2_desc">Jusqu'à 4 joueurs en local</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Icône villes">🌍</div>
+                        <h3 class="feature-title" data-i18n="feature3_title">450+ Villes</h3>
+                        <p class="feature-desc" data-i18n="feature3_desc">Du monde entier</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon" role="img" aria-label="Icône précision">🎯</div>
+                        <h3 class="feature-title" data-i18n="feature4_title">Précision GPS</h3>
+                        <p class="feature-desc" data-i18n="feature4_desc">Calculs en temps réel</p>
+                    </article>
+                </div>
+            </section>
+            
+            <!-- FAQ -->
+            <section id="faq">
+                <h2><span data-i18n="faq_title">❓ Questions Fréquentes</span></h2>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq1_q">Comment jouer ?</h3>
+                    <div class="faq-answer" data-i18n-html="faq1_a">
+                        <ol>
+                            <li>Autorisez l'accès à votre localisation</li>
+                            <li>Visez dans la direction de la ville affichée</li>
+                            <li>Validez votre réponse</li>
+                            <li>Gagnez des points selon votre précision !</li>
+                        </ol>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq2_q">Comment fonctionne le scoring ?</h3>
+                    <div class="faq-answer">
+                        <p data-i18n="faq2_a">Votre score dépend de la précision de votre visée. Plus vous êtes proche 
+                        de la bonne direction, plus vous gagnez de points. Une erreur de moins 
+                        de 5° vous donne le <strong>score maximum</strong> !</p>
+                    </div>
+                </article>
+                
+                <article class="faq-item" id="premium">
+                    <h3 class="faq-question" data-i18n="faq3_q">Qu'est-ce que le Premium ?</h3>
+                    <div class="faq-answer" data-i18n-html="faq3_a">
+                        <p>Le Premium débloque :</p>
+                        <ul>
+                            <li>450+ villes supplémentaires (difficultés moyenne et difficile)</li>
+                            <li>Mode multijoueur (jusqu'à 4 joueurs)</li>
+                            <li>Mode distance (estimez aussi la distance)</li>
+                            <li>Personnalisation avancée</li>
+                        </ul>
+                        <p><strong>Achat unique, à vie.</strong> Aucun abonnement.</p>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq4_q">Comment restaurer mes achats ?</h3>
+                    <div class="faq-answer" data-i18n-html="faq4_a">
+                        <p>Si vous avez déjà acheté le Premium :</p>
+                        <ol>
+                            <li>Ouvrez la page Premium dans l'app</li>
+                            <li>Appuyez sur "Restore my purchases"</li>
+                            <li>Vos achats seront restaurés automatiquement</li>
+                        </ol>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq5_q">La boussole ne fonctionne pas</h3>
+                    <div class="faq-answer" data-i18n-html="faq5_a">
+                        <p>Assurez-vous que :</p>
+                        <ul>
+                            <li>Vous avez autorisé l'accès à la localisation</li>
+                            <li>Vous n'êtes pas près d'objets magnétiques (haut-parleurs, aimants)</li>
+                            <li>Vous calibrez la boussole en faisant un mouvement en forme de "8"</li>
+                        </ul>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq6_q">Comment fonctionne Game Center ?</h3>
+                    <div class="faq-answer" data-i18n-html="faq6_a">
+                        <p>Connectez-vous à Game Center pour :</p>
+                        <ul>
+                            <li>Comparer vos scores mondialement</li>
+                            <li>Débloquer des achievements</li>
+                            <li>Participer aux challenges</li>
+                        </ul>
+                        <p>La connexion se fait automatiquement au premier lancement.</p>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq7_q">L'app plante ou ne se lance pas</h3>
+                    <div class="faq-answer" data-i18n-html="faq7_a">
+                        <p>Essayez ces solutions :</p>
+                        <ol>
+                            <li>Redémarrez votre iPhone/iPad</li>
+                            <li>Vérifiez que vous avez la dernière version d'iOS</li>
+                            <li>Supprimez et réinstallez l'app</li>
+                            <li>Si le problème persiste, contactez-nous à <a href="mailto:support@pointit.game">support@pointit.game</a></li>
+                        </ol>
+                    </div>
+                </article>
+                
+                <article class="faq-item">
+                    <h3 class="faq-question" data-i18n="faq8_q">Mes données sont-elles sauvegardées ?</h3>
+                    <div class="faq-answer" data-i18n-html="faq8_a">
+                        <p>Oui ! Vos données sont sauvegardées :</p>
+                        <ul>
+                            <li><strong>Localement</strong> sur votre appareil</li>
+                            <li><strong>Sur Game Center</strong> si vous êtes connecté</li>
+                            <li><strong>Via iCloud</strong> pour synchroniser entre appareils</li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+            
+            <!-- Privacy -->
+            <section id="privacy">
+                <h2><span data-i18n="privacy_title">🔒 Confidentialité</span></h2>
+                <p data-i18n="privacy_intro">
+                    PointIt respecte votre vie privée. Nous collectons uniquement :
+                </p>
+                <ul>
+                    <li data-i18n="privacy_1"><strong>Votre localisation</strong> : pour calculer les directions (utilisée localement, jamais stockée)</li>
+                    <li data-i18n="privacy_2"><strong>Vos scores</strong> : stockés localement et sur Game Center</li>
+                    <li data-i18n="privacy_3"><strong>Achats</strong> : gérés par Apple (StoreKit)</li>
+                </ul>
+                <p>
+                    <span data-i18n="privacy_no_sell"><strong>Aucune donnée personnelle n'est vendue à des tiers.</strong></span>
+                    <span data-i18n="privacy_policy">Consultez notre <a href="https://github.com/valthna/PointIt-Privacy">politique de confidentialité complète</a>.</span>
+                </p>
+            </section>
+            
+            <!-- System Requirements -->
+            <section id="requirements">
+                <h2><span data-i18n="requirements_title">📱 Configuration Requise</span></h2>
+                <ul>
+                    <li data-i18n="req_device"><strong>Appareil</strong> : iPhone, iPad</li>
+                    <li data-i18n="req_ios"><strong>iOS</strong> : iOS 17.0 ou version ultérieure</li>
+                    <li data-i18n="req_space"><strong>Espace</strong> : 50 MB disponibles</li>
+                    <li data-i18n="req_connection"><strong>Connexion</strong> : Internet recommandée pour Game Center</li>
+                    <li data-i18n="req_sensors"><strong>Capteurs</strong> : GPS, Boussole (magnétomètre)</li>
+                </ul>
+            </section>
+            
+            <!-- Last Updated -->
+            <p style="text-align: center; margin-top: var(--spacing-xl); opacity: 0.6; font-size: 14px;">
+                <em data-i18n="last_updated">Dernière mise à jour : 5 novembre 2025</em>
+            </p>
+        </main>
+        
+        <!-- Contact Section -->
+        <section class="glass-card contact-section" id="contact">
+            <h2><span data-i18n="contact_title">✉️ Contact & Support</span></h2>
+            <p data-i18n="contact_desc">Besoin d'aide ? Une question ? Nous sommes là pour vous aider !</p>
+            
+            <div style="margin-top: var(--spacing-xl);">
+                <a href="mailto:support@pointit.game" class="btn btn-primary" aria-label="Envoyer un email au support">
+                    <span data-i18n="contact_email">📧 support@pointit.game</span>
+                </a>
+                <a href="https://github.com/valthna/PointIt-Privacy/issues/new" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="Signaler un bug sur GitHub">
+                    <span data-i18n="contact_bug">🐛 Signaler un Bug</span>
+                </a>
+            </div>
+            
+            <p style="margin-top: var(--spacing-l); font-size: 14px; opacity: 0.7;">
+                <span data-i18n="contact_response_time">Temps de réponse : 24-48 heures</span>
+            </p>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p data-i18n="footer_copyright">PointIt © 2025 - Version 1.0</p>
+            <p data-i18n="footer_tagline">Made with ❤️ for geography lovers</p>
+            <nav class="footer-links" aria-label="Liens du pied de page">
+                <a href="https://github.com/valthna/PointIt-Privacy" target="_blank" rel="noopener noreferrer" data-i18n="footer_privacy">Confidentialité</a>
+                <a href="mailto:support@pointit.game" data-i18n="footer_support">Support</a>
+                <a href="https://github.com/valthna/PointIt-Privacy/issues" target="_blank" rel="noopener noreferrer" data-i18n="footer_bugs">Bugs</a>
+            </nav>
+        </footer>
+    </div>
+    
+    <!-- Back to top button -->
+    <a href="#main-content" class="back-to-top" id="backToTop" aria-label="Retour en haut"></a>
+    
+    <!-- JavaScript for interactions -->
+    <script>
+    // ==================== TRANSLATIONS ====================
+    const translations = {
+        fr: {
+            skip_to_content: "Passer au contenu principal",
+            nav_about: "À propos",
+            nav_features: "Fonctionnalités",
+            nav_faq: "FAQ",
+            nav_premium: "Premium",
+            nav_privacy: "Confidentialité",
+            nav_contact: "Contact",
+            title: "PointIt",
+            subtitle: "Centre d'Aide et Assistance",
+            version_badge: "Version 1.0",
+            about_title: "📱 À propos de PointIt",
+            about_desc: "PointIt est un jeu de géographie éducatif qui teste votre connaissance des directions et des villes du monde. Utilisez votre boussole pour pointer dans la direction des villes et gagnez des points selon votre précision !",
+            features_title: "✨ Fonctionnalités",
+            feature1_title: "Mode Solo",
+            feature1_desc: "Jouez à votre rythme et améliorez vos scores",
+            feature2_title: "Multijoueur",
+            feature2_desc: "Jusqu'à 4 joueurs en local",
+            feature3_title: "450+ Villes",
+            feature3_desc: "Du monde entier",
+            feature4_title: "Précision GPS",
+            feature4_desc: "Calculs en temps réel",
+            faq_title: "❓ Questions Fréquentes",
+            faq1_q: "Comment jouer ?",
+            faq1_a: "<ol><li>Autorisez l'accès à votre localisation</li><li>Visez dans la direction de la ville affichée</li><li>Validez votre réponse</li><li>Gagnez des points selon votre précision !</li></ol>",
+            faq2_q: "Comment fonctionne le scoring ?",
+            faq2_a: "Votre score dépend de la précision de votre visée. Plus vous êtes proche de la bonne direction, plus vous gagnez de points. Une erreur de moins de 5° vous donne le <strong>score maximum</strong> !",
+            faq3_q: "Qu'est-ce que le Premium ?",
+            faq3_a: "<p>Le Premium débloque :</p><ul><li>450+ villes supplémentaires (difficultés moyenne et difficile)</li><li>Mode multijoueur (jusqu'à 4 joueurs)</li><li>Mode distance (estimez aussi la distance)</li><li>Personnalisation avancée</li></ul><p><strong>Achat unique, à vie.</strong> Aucun abonnement.</p>",
+            faq4_q: "Comment restaurer mes achats ?",
+            faq4_a: "<p>Si vous avez déjà acheté le Premium :</p><ol><li>Ouvrez la page Premium dans l'app</li><li>Appuyez sur \"Restore my purchases\"</li><li>Vos achats seront restaurés automatiquement</li></ol>",
+            faq5_q: "La boussole ne fonctionne pas",
+            faq5_a: "<p>Assurez-vous que :</p><ul><li>Vous avez autorisé l'accès à la localisation</li><li>Vous n'êtes pas près d'objets magnétiques (haut-parleurs, aimants)</li><li>Vous calibrez la boussole en faisant un mouvement en forme de \"8\"</li></ul>",
+            faq6_q: "Comment fonctionne Game Center ?",
+            faq6_a: "<p>Connectez-vous à Game Center pour :</p><ul><li>Comparer vos scores mondialement</li><li>Débloquer des achievements</li><li>Participer aux challenges</li></ul><p>La connexion se fait automatiquement au premier lancement.</p>",
+            faq7_q: "L'app plante ou ne se lance pas",
+            faq7_a: "<p>Essayez ces solutions :</p><ol><li>Redémarrez votre iPhone/iPad</li><li>Vérifiez que vous avez la dernière version d'iOS</li><li>Supprimez et réinstallez l'app</li><li>Si le problème persiste, contactez-nous à <a href='mailto:support@pointit.game'>support@pointit.game</a></li></ol>",
+            faq8_q: "Mes données sont-elles sauvegardées ?",
+            faq8_a: "<p>Oui ! Vos données sont sauvegardées :</p><ul><li><strong>Localement</strong> sur votre appareil</li><li><strong>Sur Game Center</strong> si vous êtes connecté</li><li><strong>Via iCloud</strong> pour synchroniser entre appareils</li></ul>",
+            privacy_title: "🔒 Confidentialité",
+            privacy_intro: "PointIt respecte votre vie privée. Nous collectons uniquement :",
+            privacy_1: "<strong>Votre localisation</strong> : pour calculer les directions (utilisée localement, jamais stockée)",
+            privacy_2: "<strong>Vos scores</strong> : stockés localement et sur Game Center",
+            privacy_3: "<strong>Achats</strong> : gérés par Apple (StoreKit)",
+            privacy_no_sell: "<strong>Aucune donnée personnelle n'est vendue à des tiers.</strong>",
+            privacy_policy: "Consultez notre <a href='https://github.com/valthna/PointIt-Privacy'>politique de confidentialité complète</a>.",
+            requirements_title: "📱 Configuration Requise",
+            req_device: "<strong>Appareil</strong> : iPhone, iPad",
+            req_ios: "<strong>iOS</strong> : iOS 17.0 ou version ultérieure",
+            req_space: "<strong>Espace</strong> : 50 MB disponibles",
+            req_connection: "<strong>Connexion</strong> : Internet recommandée pour Game Center",
+            req_sensors: "<strong>Capteurs</strong> : GPS, Boussole (magnétomètre)",
+            last_updated: "Dernière mise à jour : 5 novembre 2025",
+            contact_title: "✉️ Contact & Support",
+            contact_desc: "Besoin d'aide ? Une question ? Nous sommes là pour vous aider !",
+            contact_email: "📧 support@pointit.game",
+            contact_bug: "🐛 Signaler un Bug",
+            contact_response_time: "Temps de réponse : 24-48 heures",
+            footer_copyright: "PointIt © 2025 - Version 1.0",
+            footer_tagline: "Made with ❤️ for geography lovers",
+            footer_privacy: "Confidentialité",
+            footer_support: "Support",
+            footer_bugs: "Bugs"
+        },
+        en: {
+            skip_to_content: "Skip to main content",
+            nav_about: "About",
+            nav_features: "Features",
+            nav_faq: "FAQ",
+            nav_premium: "Premium",
+            nav_privacy: "Privacy",
+            nav_contact: "Contact",
+            title: "PointIt",
+            subtitle: "Help & Support Center",
+            version_badge: "Version 1.0",
+            about_title: "📱 About PointIt",
+            about_desc: "PointIt is an educational geography game that tests your knowledge of directions and cities around the world. Use your compass to point in the direction of cities and earn points based on your accuracy!",
+            features_title: "✨ Features",
+            feature1_title: "Solo Mode",
+            feature1_desc: "Play at your own pace and improve your scores",
+            feature2_title: "Multiplayer",
+            feature2_desc: "Up to 4 players locally",
+            feature3_title: "450+ Cities",
+            feature3_desc: "From around the world",
+            feature4_title: "GPS Precision",
+            feature4_desc: "Real-time calculations",
+            faq_title: "❓ Frequently Asked Questions",
+            faq1_q: "How to play?",
+            faq1_a: "<ol><li>Allow location access</li><li>Aim in the direction of the displayed city</li><li>Validate your answer</li><li>Earn points based on your accuracy!</li></ol>",
+            faq2_q: "How does scoring work?",
+            faq2_a: "Your score depends on your aiming accuracy. The closer you are to the correct direction, the more points you earn. An error of less than 5° gives you the <strong>maximum score</strong>!",
+            faq3_q: "What is Premium?",
+            faq3_a: "<p>Premium unlocks:</p><ul><li>450+ additional cities (medium and hard difficulties)</li><li>Multiplayer mode (up to 4 players)</li><li>Distance mode (estimate distance too)</li><li>Advanced customization</li></ul><p><strong>One-time purchase, lifetime.</strong> No subscription.</p>",
+            faq4_q: "How to restore my purchases?",
+            faq4_a: "<p>If you already purchased Premium:</p><ol><li>Open the Premium page in the app</li><li>Tap \"Restore my purchases\"</li><li>Your purchases will be restored automatically</li></ol>",
+            faq5_q: "The compass doesn't work",
+            faq5_a: "<p>Make sure that:</p><ul><li>You have allowed location access</li><li>You are not near magnetic objects (speakers, magnets)</li><li>You calibrate the compass by making a figure-8 motion</li></ul>",
+            faq6_q: "How does Game Center work?",
+            faq6_a: "<p>Connect to Game Center to:</p><ul><li>Compare your scores globally</li><li>Unlock achievements</li><li>Participate in challenges</li></ul><p>Connection happens automatically on first launch.</p>",
+            faq7_q: "The app crashes or won't launch",
+            faq7_a: "<p>Try these solutions:</p><ol><li>Restart your iPhone/iPad</li><li>Check that you have the latest iOS version</li><li>Delete and reinstall the app</li><li>If the problem persists, contact us at <a href='mailto:support@pointit.game'>support@pointit.game</a></li></ol>",
+            faq8_q: "Is my data saved?",
+            faq8_a: "<p>Yes! Your data is saved:</p><ul><li><strong>Locally</strong> on your device</li><li><strong>On Game Center</strong> if you're connected</li><li><strong>Via iCloud</strong> to sync across devices</li></ul>",
+            privacy_title: "🔒 Privacy",
+            privacy_intro: "PointIt respects your privacy. We only collect:",
+            privacy_1: "<strong>Your location</strong>: to calculate directions (used locally, never stored)",
+            privacy_2: "<strong>Your scores</strong>: stored locally and on Game Center",
+            privacy_3: "<strong>Purchases</strong>: managed by Apple (StoreKit)",
+            privacy_no_sell: "<strong>No personal data is sold to third parties.</strong>",
+            privacy_policy: "Read our <a href='https://github.com/valthna/PointIt-Privacy'>complete privacy policy</a>.",
+            requirements_title: "📱 System Requirements",
+            req_device: "<strong>Device</strong>: iPhone, iPad",
+            req_ios: "<strong>iOS</strong>: iOS 17.0 or later",
+            req_space: "<strong>Storage</strong>: 50 MB available",
+            req_connection: "<strong>Connection</strong>: Internet recommended for Game Center",
+            req_sensors: "<strong>Sensors</strong>: GPS, Compass (magnetometer)",
+            last_updated: "Last updated: November 5, 2025",
+            contact_title: "✉️ Contact & Support",
+            contact_desc: "Need help? Have a question? We're here to help!",
+            contact_email: "📧 support@pointit.game",
+            contact_bug: "🐛 Report a Bug",
+            contact_response_time: "Response time: 24-48 hours",
+            footer_copyright: "PointIt © 2025 - Version 1.0",
+            footer_tagline: "Made with ❤️ for geography lovers",
+            footer_privacy: "Privacy",
+            footer_support: "Support",
+            footer_bugs: "Bugs"
+        },
+        es: {
+            skip_to_content: "Saltar al contenido principal",
+            nav_about: "Acerca de",
+            nav_features: "Funcionalidades",
+            nav_faq: "FAQ",
+            nav_premium: "Premium",
+            nav_privacy: "Privacidad",
+            nav_contact: "Contacto",
+            title: "PointIt",
+            subtitle: "Centro de Ayuda y Asistencia",
+            version_badge: "Versión 1.0",
+            about_title: "📱 Acerca de PointIt",
+            about_desc: "PointIt es un juego educativo de geografía que pone a prueba tu conocimiento de direcciones y ciudades del mundo. ¡Usa tu brújula para apuntar en la dirección de las ciudades y gana puntos según tu precisión!",
+            features_title: "✨ Funcionalidades",
+            feature1_title: "Modo Individual",
+            feature1_desc: "Juega a tu ritmo y mejora tus puntuaciones",
+            feature2_title: "Multijugador",
+            feature2_desc: "Hasta 4 jugadores localmente",
+            feature3_title: "450+ Ciudades",
+            feature3_desc: "De todo el mundo",
+            feature4_title: "Precisión GPS",
+            feature4_desc: "Cálculos en tiempo real",
+            faq_title: "❓ Preguntas Frecuentes",
+            faq1_q: "¿Cómo jugar?",
+            faq1_a: "<ol><li>Permite el acceso a tu ubicación</li><li>Apunta en la dirección de la ciudad mostrada</li><li>Valida tu respuesta</li><li>¡Gana puntos según tu precisión!</li></ol>",
+            faq2_q: "¿Cómo funciona la puntuación?",
+            faq2_a: "Tu puntuación depende de la precisión de tu puntería. Cuanto más cerca estés de la dirección correcta, más puntos ganas. ¡Un error de menos de 5° te da la <strong>puntuación máxima</strong>!",
+            faq3_q: "¿Qué es Premium?",
+            faq3_a: "<p>Premium desbloquea:</p><ul><li>450+ ciudades adicionales (dificultades media y difícil)</li><li>Modo multijugador (hasta 4 jugadores)</li><li>Modo distancia (estima también la distancia)</li><li>Personalización avanzada</li></ul><p><strong>Compra única, de por vida.</strong> Sin suscripción.</p>",
+            faq4_q: "¿Cómo restaurar mis compras?",
+            faq4_a: "<p>Si ya compraste Premium:</p><ol><li>Abre la página Premium en la app</li><li>Toca \"Restore my purchases\"</li><li>Tus compras se restaurarán automáticamente</li></ol>",
+            faq5_q: "La brújula no funciona",
+            faq5_a: "<p>Asegúrate de que:</p><ul><li>Has permitido el acceso a la ubicación</li><li>No estás cerca de objetos magnéticos (altavoces, imanes)</li><li>Calibras la brújula haciendo un movimiento en forma de \"8\"</li></ul>",
+            faq6_q: "¿Cómo funciona Game Center?",
+            faq6_a: "<p>Conéctate a Game Center para:</p><ul><li>Comparar tus puntuaciones globalmente</li><li>Desbloquear logros</li><li>Participar en desafíos</li></ul><p>La conexión se realiza automáticamente en el primer lanzamiento.</p>",
+            faq7_q: "La app se bloquea o no se inicia",
+            faq7_a: "<p>Prueba estas soluciones:</p><ol><li>Reinicia tu iPhone/iPad</li><li>Verifica que tienes la última versión de iOS</li><li>Elimina y reinstala la app</li><li>Si el problema persiste, contáctanos en <a href='mailto:support@pointit.game'>support@pointit.game</a></li></ol>",
+            faq8_q: "¿Mis datos están guardados?",
+            faq8_a: "<p>¡Sí! Tus datos están guardados:</p><ul><li><strong>Localmente</strong> en tu dispositivo</li><li><strong>En Game Center</strong> si estás conectado</li><li><strong>Vía iCloud</strong> para sincronizar entre dispositivos</li></ul>",
+            privacy_title: "🔒 Privacidad",
+            privacy_intro: "PointIt respeta tu privacidad. Solo recopilamos:",
+            privacy_1: "<strong>Tu ubicación</strong>: para calcular las direcciones (usada localmente, nunca almacenada)",
+            privacy_2: "<strong>Tus puntuaciones</strong>: almacenadas localmente y en Game Center",
+            privacy_3: "<strong>Compras</strong>: gestionadas por Apple (StoreKit)",
+            privacy_no_sell: "<strong>Ningún dato personal se vende a terceros.</strong>",
+            privacy_policy: "Consulta nuestra <a href='https://github.com/valthna/PointIt-Privacy'>política de privacidad completa</a>.",
+            requirements_title: "📱 Requisitos del Sistema",
+            req_device: "<strong>Dispositivo</strong>: iPhone, iPad",
+            req_ios: "<strong>iOS</strong>: iOS 17.0 o posterior",
+            req_space: "<strong>Almacenamiento</strong>: 50 MB disponibles",
+            req_connection: "<strong>Conexión</strong>: Internet recomendada para Game Center",
+            req_sensors: "<strong>Sensores</strong>: GPS, Brújula (magnetómetro)",
+            last_updated: "Última actualización: 5 de noviembre de 2025",
+            contact_title: "✉️ Contacto y Soporte",
+            contact_desc: "¿Necesitas ayuda? ¿Tienes una pregunta? ¡Estamos aquí para ayudarte!",
+            contact_email: "📧 support@pointit.game",
+            contact_bug: "🐛 Reportar un Error",
+            contact_response_time: "Tiempo de respuesta: 24-48 horas",
+            footer_copyright: "PointIt © 2025 - Versión 1.0",
+            footer_tagline: "Hecho con ❤️ para amantes de la geografía",
+            footer_privacy: "Privacidad",
+            footer_support: "Soporte",
+            footer_bugs: "Errores"
+        }
+    };
+    
+    // ==================== LANGUAGE FUNCTIONS ====================
+    function detectLanguage() {
+        const browserLang = navigator.language || navigator.userLanguage;
+        if (browserLang.startsWith('fr')) return 'fr';
+        if (browserLang.startsWith('es')) return 'es';
+        return 'en';
+    }
+    
+    function changeLang(lang) {
+        // Save preference
+        localStorage.setItem('preferredLang', lang);
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = lang;
+        
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active');
+            }
+        });
+        
+        // Update all translations
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        // Update HTML content
+        document.querySelectorAll('[data-i18n-html]').forEach(element => {
+            const key = element.getAttribute('data-i18n-html');
+            if (translations[lang] && translations[lang][key]) {
+                element.innerHTML = translations[lang][key];
+            }
+        });
+        
+        // Update meta tags
+        const title = lang === 'fr' ? 'PointIt - Jeu de Géographie Éducatif' :
+                     lang === 'es' ? 'PointIt - Juego de Geografía Educativo' :
+                     'PointIt - Educational Geography Game';
+        document.title = title;
+        
+        const ogTitle = document.querySelector('meta[property="og:title"]');
+        if (ogTitle) ogTitle.content = title;
+    }
+    
+    // ==================== SCROLL EFFECTS ====================
+    const backToTopButton = document.getElementById('backToTop');
+    const nav = document.querySelector('.nav');
+    
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.scrollY;
+        
+        // Back to top button
+        if (currentScroll > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+        
+        // Nav scale effect
+        if (currentScroll > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+        
+        lastScroll = currentScroll;
+    });
+    
+    // ==================== SMOOTH SCROLL ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // ==================== INITIALIZE ====================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set initial language
+        const savedLang = localStorage.getItem('preferredLang') || detectLanguage();
+        changeLang(savedLang);
+        
+        // Add intersection observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.glass-card, .feature-card, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+    });
+    </script>
+</body>
+</html>
